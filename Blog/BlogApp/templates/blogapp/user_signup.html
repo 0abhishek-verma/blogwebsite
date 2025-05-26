@@ -1,0 +1,35 @@
+{% extends 'blogapp/base.html' %}
+{% block title %}Sign Up{% endblock title %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-300 via-blue-200 to-indigo-200 py-12 px-4">
+  <div class="max-w-md w-full bg-white p-8 rounded-3xl shadow-2xl">
+    <h2 class="text-4xl font-extrabold text-center text-purple-700 mb-6">Create Your Account</h2>
+
+    <form method="post" class="space-y-6">
+      {% csrf_token %}
+      {% for i in user_form %}
+        <div>
+          <label for="{{ i.id_for_label }}" class="block text-gray-700 font-medium mb-1">
+            {{ i.label }}
+          </label>
+          {{ i }}
+          {% if i.errors %}
+            <p class="text-red-500 text-sm mt-1">{{ i.errors|striptags }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <button type="submit"
+        class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold py-2 px-4 rounded-xl shadow-md transition-all duration-300">
+        ✨ Sign Up
+      </button>
+    </form>
+
+    <p class="text-center text-sm text-gray-600 mt-6">
+      Already have an account? 
+      <a href="{% url 'user_login' %}" class="text-purple-600 font-semibold hover:underline">Log in here</a>
+    </p>
+  </div>
+</div>
+{% endblock content %}
