@@ -28,14 +28,16 @@
           </a>
 
           <!-- Right: Update/Delete -->
-          <div class="flex space-x-2">
-            <a href="{% url 'update_blog' i.id %}" class="bg-green-400 hover:bg-yellow-500 text-white px-3 py-1 rounded text-xs">
-              Update
-            </a>
-            <a href="{% url 'delete_blog' i.id %}" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs">
-              Delete
-            </a>
-          </div>
+           {% if i.user == request.user %}
+           <div class="flex space-x-2">
+             <a href="{% url 'update_blog' i.id %}" class="bg-green-400 hover:bg-yellow-500 text-white px-3 py-1 rounded text-xs">
+               Update
+              </a>
+              <a href="{% url 'delete_blog' i.id %}" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs">
+                Delete
+              </a>
+            </div>
+            {% endif %}
         </div>
       </div>
     </div>
